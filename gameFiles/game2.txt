@@ -1,0 +1,6 @@
+Shigeru Miyamoto
+Super Mario Bros
+1985
+1
+gameFiles/superMarioThumbnail.png
+python Tracer.py
