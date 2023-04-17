@@ -58,7 +58,9 @@ def centreText(words, size, colour, y):
     screen.blit(textA, text_rect)
     
 def draw():
-
+    # Load background
+    background = pygame.image.load("checkerBackground.png")
+    screen.blit(background, (0, 0))
     centreText("Please swipe your OneCard", 40, (255,255,255), 50)
     centreText("The highest score for the Game of the Month", 25, (255,255,255), 100)
     centreText("with an associated OneCard wins a prize", 25, (255,255,255), 140)
@@ -70,6 +72,8 @@ def draw():
     screen.fill((255, 255, 255), input_box)
     pygame.draw.rect(screen, (0, 0, 0), input_box, 2)
     screen.blit(input_text, text_rect)
+    if data.attempts > 0:
+        centreText("Invalid OneCard, please try again", 32, (255, 0, 0), 500)
     timeRemaining = data.start_time + 60 - time.time()
     centreText("To skip, wait for timeout", 32, (255, 255, 255), 400)
     centreText(str(int(timeRemaining)), 24, (255, 255, 255), 450)
@@ -91,7 +95,6 @@ def acceptOneCard():
 def rejectOneCard():
     print("Invalid OneCard")
     data.attempts = data.attempts + 1
-    centreText("Invalid OneCard, please try again", 32, (255, 0, 0), 500)
     data.card_swipe = ""
     
 def close():
@@ -134,7 +137,6 @@ while True:
                                 data.card_swipe = data.card_swipe[:-1]
                             else:
                                 data.card_swipe += event.unicode
-                    screen.fill(0,0,0)
                     draw()               
                     # Timeout after 60 seconds
                     timeRemaining = data.start_time + 60 - time.time()
