@@ -11,7 +11,7 @@ def find_games():
     games = []
 
     for file in game_files:
-        if file.endswith(".txt"):
+        if file.endswith(".game"):
             with open(os.path.join("gameFiles", file), "r") as f:
                 game_info = f.readlines()
                 author, title, year, playerCount, thumbnail, launchCode = game_info
@@ -19,5 +19,6 @@ def find_games():
                             playerCount.strip(), thumbnail.strip(),
                             launchCode.strip())
                 games.append(game)
+                print(game.title)
 
     return games

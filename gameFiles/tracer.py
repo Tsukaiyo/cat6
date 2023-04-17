@@ -484,24 +484,28 @@ def sortScores(file):
             del names[bestScoreIndex[i] - counter]
             counter = counter + 1
 
-    f = open('Scoreboard.txt', 'w').close()
-    f = open("Scoreboard.txt", "a+")
+    f = open("gameFiles/Scoreboard.txt", 'w').close()
+    f = open("gameFiles/Scoreboard.txt", "a+")
     for i in range(len(highScoreList)):
         f.write(highScoreList[i])
     f.close()
 
 def writeHighScores(score, gameTime, playerName):
     #Add a new score to the scoreboard
-    f = open("Scoreboard.txt", "a+")
+    f = open("gameFiles/Scoreboard.txt", "a+")
     scoreTEXT = str(score) + "," + str(gameTime) + "," + playerName + "\n"
     f.write(scoreTEXT)
     f.close()
-    sortScores("Scoreboard.txt")
+    sortScores("gameFiles/Scoreboard.txt")
+    #Edited to be CAT6-Compatible
+    f = open("gameFiles/tracerAllHighscores.txt", "a+")
+    f.write(str(score)+ "\n")
+    f.close
 
 def printHighScores():
     #Write out the top 7 scores to the screen
-    f = open("Scoreboard.txt", "a+")
-    with open("Scoreboard.txt", "r") as file1:
+    f = open("gameFiles/Scoreboard.txt", "a+")
+    with open("gameFiles/Scoreboard.txt", "r") as file1:
         f_list = [str(i) for line in file1 for i in line.split('\n') if i.strip()]
     # seperate out scores and times
     gameData = []
@@ -733,7 +737,7 @@ def render(gameState, winner, endTime, endOfRound, startTime, players, team, gri
         mazeCreated = False
         explosions = 0
 
-        write("selected: " + str(selected))
+        #write("selected: " + str(selected))
         #button stuff
         if not buttonsMade:
             buttons.append(Button("2 Players", 60, PINK, 250, 300))
@@ -1425,8 +1429,8 @@ def draw(gameState, winner, grid, size, mazeCreated, selected, points, lives, ga
             drawButtons(selected)
 
 # Ready a new log
-f = open("Log.txt", "a+")
-f = open('Log.txt', 'w').close()
+#f = open("Log.txt", "a+")
+#f = open('Log.txt', 'w').close()
 # Joystick setup
 for i in range(pygame.joystick.get_count()):
     joystick = pygame.joystick.Joystick(i)
