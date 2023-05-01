@@ -1,6 +1,8 @@
+import os
 import pygame
 import subprocess
 from gameFinder import find_games
+import win32gui
 
 pygame.init()
 
@@ -43,6 +45,13 @@ while not done:
                 done = True
             elif event.key == pygame.K_RETURN:
                 game = games[highlighted_game]
+                # Set the position of the window to the position of the gameLibrary window
+                gameLibrary_hwnd = pygame.display.get_wm_info()['window']
+                gameLibrary_rect = win32gui.GetWindowRect(gameLibrary_hwnd)
+                gameLibrary_x = gameLibrary_rect[0]
+                gameLibrary_y = gameLibrary_rect[1]
+                os.environ['SDL_VIDEO_WINDOW_POS'] = f"{gameLibrary_x}, {gameLibrary_y}"
+
                 subprocess.run(game.launchCode, shell=True)
 
             # Move the highlighted game
