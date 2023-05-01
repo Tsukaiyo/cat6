@@ -1,0 +1,6 @@
+Tomohiro Nishikado, Yoshiharu Sato
+Space Invaders
+1978
+1
+gameFiles/spaceInvaders.png
+python gamefiles/Tracer.py
