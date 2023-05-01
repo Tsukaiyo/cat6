@@ -1,6 +1,8 @@
 #Currently just displays high scores for Tracer
 import pygame
+import os
 
+os.environ['SDL_VIDEO_WINDOW_POS'] = f"{0}, {0}"
 pygame.init()
 
 # Colours
