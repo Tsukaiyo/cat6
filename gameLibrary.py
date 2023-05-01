@@ -51,13 +51,9 @@ while not done:
                 gameLibrary_rect = win32gui.GetWindowRect(gameLibrary_hwnd)
                 gameLibrary_x = gameLibrary_rect[0]
                 gameLibrary_y = gameLibrary_rect[1]
-                game_path = 'gamefiles/tracer.exe'
-                startupinfo = win32process.STARTUPINFO()
-                startupinfo.dwX = gameLibrary_x
-                startupinfo.dwY = gameLibrary_y
-                startupinfo.dwFlags = win32con.STARTF_USEPOSITION
+                os.environ['SDL_VIDEO_WINDOW_POS'] = f"{gameLibrary_x}, {gameLibrary_y}"
 
-                win32process.CreateProcess(game_path, '', None, None, 0, 0, None, None, startupinfo)
+                subprocess.run(game.launchCode, shell=True)
 
             # Move the highlighted game
             elif event.key == pygame.K_UP:
