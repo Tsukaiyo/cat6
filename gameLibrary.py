@@ -51,13 +51,9 @@ while not done:
                 gameLibrary_rect = win32gui.GetWindowRect(gameLibrary_hwnd)
                 gameLibrary_x = gameLibrary_rect[0]
                 gameLibrary_y = gameLibrary_rect[1]
-                game_path = "C:/Users/Owner/Documents/cat6/gameFiles/dist/tracer/tracer.exe"
-                startupinfo = win32process.STARTUPINFO()
-                startupinfo.dwX = gameLibrary_x
-                startupinfo.dwY = gameLibrary_y
-                startupinfo.dwFlags = win32con.STARTF_USEPOSITION
+                os.environ['SDL_VIDEO_WINDOW_POS'] = f"{gameLibrary_x}, {gameLibrary_y}"
 
-                win32process.CreateProcess(game_path, '', None, None, 0, 0, None, None, startupinfo)
+                subprocess.run(game.launchCode, shell=True)
 
             # Move the highlighted game
             elif event.key == pygame.K_UP:
@@ -87,22 +83,23 @@ while not done:
         x = i % grid_width
         y = i // grid_width
         rect = pygame.Rect(grid_x + x * (cell_size + padding),
-                           grid_y + y * (cell_size + padding), cell_size,
-                           cell_size)
+                        grid_y + y * (cell_size + padding), cell_size,
+                        cell_size)
 
         # Highlight the selected game
         if i == highlighted_game:
             # Calculate new rect for highlight
             highlight_size_increase = 10  # Increase in size of highlight
             new_rect = pygame.Rect(rect.x - highlight_size_increase,
-                                   rect.y - highlight_size_increase,
-                                   rect.width + 2 * highlight_size_increase,
-                                   rect.height + 2 * highlight_size_increase)
+                                rect.y - highlight_size_increase,
+                                rect.width + 2 * highlight_size_increase,
+                                rect.height + 2 * highlight_size_increase)
             pygame.draw.rect(screen, (255, 255, 0), new_rect, 5)
 
         thumbnail = pygame.transform.scale(game.thumbnail,
-                                           (cell_size, cell_size))
+                                        (cell_size, cell_size))
         screen.blit(thumbnail, rect)
+
 
     # Draw the details of the highlighted game
     game = games[highlighted_game]
