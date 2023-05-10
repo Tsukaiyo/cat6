@@ -1,6 +1,0 @@
-Maeve Fitzgerald
-Tracer
-2019
-4
-gameFiles/tracerThumbnail.png
-python gamefiles/Tracer.py

@@ -40,8 +40,8 @@ def text(words, font, size, colour, x, y):
 
 def printHighScores():
     #Write out the top 7 scores to the screen
-    f = open("gameFiles/Scoreboard.txt", "a+")
-    with open("gameFiles/Scoreboard.txt", "r") as file1:
+    f = open("gameFiles/tracer2/Scoreboard.txt", "a+")
+    with open("gameFiles/tracer2/Scoreboard.txt", "r") as file1:
         f_list = [str(i) for line in file1 for i in line.split('\n') if i.strip()]
     # seperate out scores and times
     gameData = []

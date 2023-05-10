@@ -45,7 +45,7 @@ while not done:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 done = True
-            elif event.key == pygame.K_RETURN:
+            elif event.key == pygame.K_SPACE:
                 game = games[highlighted_game]
                 gameLibrary_hwnd = pygame.display.get_wm_info()['window']
                 gameLibrary_rect = win32gui.GetWindowRect(gameLibrary_hwnd)
